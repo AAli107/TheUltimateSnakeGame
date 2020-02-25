@@ -71,11 +71,12 @@ void Game::UpdateModel()
 					const bool eating = next == goal.GetLocation();
 					if( eating )
 					{
-						if (snekMovePeriod >= 4) 
+						if (snekMovePeriod >= 4 && score >= 5)
 						{
-							--snekMovePeriod;
+							snekMovePeriod -= 2;
 						}
 						snek.Grow();
+						++score;
 					}
 					snek.MoveBy( delta_loc );
 					if( eating )

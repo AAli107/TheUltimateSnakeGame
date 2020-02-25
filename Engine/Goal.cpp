@@ -7,8 +7,8 @@ Goal::Goal( std::mt19937 & rng,const Board & brd,const Snake & snake )
 
 void Goal::Respawn( std::mt19937 & rng,const Board & brd,const Snake & snake )
 {
-	std::uniform_int_distribution<int> xDist( 0,brd.GetGridWidth() - 1 );
-	std::uniform_int_distribution<int> yDist( 0,brd.GetGridHeight() - 1 );
+	std::uniform_int_distribution<int> xDist( 1, brd.GetGridWidth() - 1 );
+	std::uniform_int_distribution<int> yDist( 1, brd.GetGridHeight() - 1 );
 
 	Location newLoc;
 	do

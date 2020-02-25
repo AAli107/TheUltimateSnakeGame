@@ -53,6 +53,7 @@ private:
 	Goal goal;
 	int snekMovePeriod = 40;
 	int snekMoveCounter = 0;
+	int score = 0;
 	bool gameIsOver = false;
 	bool gameIsStarted = false;
 	/********************************/
