@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Board.h"
+#include <random>
 
 
 class Snake
@@ -20,16 +21,17 @@ private:
 		Color c;
 	};
 public:
-	Snake( const Location& loc );
+	Snake( const Location& loc);
 	void MoveBy( const Location& delta_loc );
 	Location GetNextHeadLocation( const Location& delta_loc ) const;
 	void Grow();
 	void Draw( Board& brd ) const;
 	bool IsInTileExceptEnd( const Location& target ) const;
 	bool IsInTile( const Location& target ) const;
+	std::random_device rng;
 
 private:
-	static constexpr Color headColor = Colors::Yellow;
+	static constexpr Color headColor = Colors::MakeRGB(128, 200, 0);
 	static constexpr int nSegmentsMax = 100;
 	Segment segments[nSegmentsMax];
 	int nSegments = 1;

@@ -1,19 +1,13 @@
 #include "Snake.h"
 #include <assert.h>
 
-Snake::Snake( const Location& loc )
+Snake::Snake( const Location& loc)
 {
-	constexpr int nBodyColors = 4;
-	constexpr Color bodyColors[nBodyColors] = {		
-		{ 10,100,32 },
-		{ 10,130,48 },
-		{ 18,160,48 },
-		{ 10,130,48 }
-	};
-		
+	std::uniform_int_distribution<int> ColorRange(150, 200);
+
 	for( int i = 0; i < nSegmentsMax; ++i )
 	{
-		segments[i].InitBody( bodyColors[i % nBodyColors] );
+		segments[i].InitBody( Colors::MakeRGB(0, ColorRange(rng), 0) );
 	}
 
 	segments[0].InitHead( loc );

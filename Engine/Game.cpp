@@ -8,7 +8,7 @@ Game::Game( MainWindow& wnd )
 	gfx( wnd ),
 	brd( gfx ),
 	rng( std::random_device()() ),
-	snek( {2,2} ),
+	snek({31, 17}),
 	goal( rng,brd,snek )
 {
 }
