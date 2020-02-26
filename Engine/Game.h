@@ -56,5 +56,6 @@ private:
 	int score = 0;
 	bool gameIsOver = false;
 	bool gameIsStarted = false;
+	bool canChangeOrientation = true;
 	/********************************/
 };

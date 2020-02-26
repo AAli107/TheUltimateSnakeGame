@@ -27,31 +27,35 @@ void Game::UpdateModel()
 	{
 		if( !gameIsOver )
 		{
-			if (wnd.kbd.KeyIsPressed(VK_UP))
+			if (wnd.kbd.KeyIsPressed(VK_UP) && canChangeOrientation)
 			{
 				if (delta_loc.y != 1) 
 				{
+					canChangeOrientation = false;
 					delta_loc = { 0,-1 };
 				}
 			}
-			else if( wnd.kbd.KeyIsPressed( VK_DOWN ) )
+			else if( wnd.kbd.KeyIsPressed( VK_DOWN ) && canChangeOrientation)
 			{
 				if (delta_loc.y != -1)
 				{
+					canChangeOrientation = false;
 					delta_loc = { 0,1 };
 				}
 			}
-			else if( wnd.kbd.KeyIsPressed( VK_LEFT ) )
+			else if( wnd.kbd.KeyIsPressed( VK_LEFT ) && canChangeOrientation)
 			{
 				if (delta_loc.x != 1)
 				{
+					canChangeOrientation = false;
 					delta_loc = { -1,0 };
 				}
 			}
-			else if (wnd.kbd.KeyIsPressed(VK_RIGHT))
+			else if (wnd.kbd.KeyIsPressed(VK_RIGHT) && canChangeOrientation)
 			{
 				if (delta_loc.x != -1)
 				{
+					canChangeOrientation = false;
 					delta_loc = { 1,0 };
 				}
 			}
@@ -59,6 +63,7 @@ void Game::UpdateModel()
 			++snekMoveCounter;
 			if( snekMoveCounter >= snekMovePeriod )
 			{
+				canChangeOrientation = true;
 				snekMoveCounter = 0;
 				const Location next = snek.GetNextHeadLocation( delta_loc );
 				if( !brd.IsInsideBoard( next ) ||
