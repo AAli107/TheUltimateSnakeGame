@@ -62,7 +62,14 @@ void Game::UpdateModel()
 				}
 			}
 
-			++snekMoveCounter;
+			const Location next = snek.GetNextHeadLocation(delta_loc);
+			if (!brd.IsInsideBoard(next) ||
+				snek.IsInTileExceptEnd(next))
+			{
+				gameIsOver = true;
+			}
+
+			snekMoveCounter += 60 * dt;
 			if( snekMoveCounter >= snekMovePeriod )
 			{
 				canChangeOrientation = true;
@@ -73,23 +80,20 @@ void Game::UpdateModel()
 				{
 					gameIsOver = true;
 				}
-				else
+				const bool eating = next == goal.GetLocation();
+				if( eating )
 				{
-					const bool eating = next == goal.GetLocation();
-					if( eating )
+					if (snekMovePeriod >= 3 && score >= 10)
 					{
-						if (snekMovePeriod >= 4 && score >= 5)
-						{
-							snekMovePeriod -= 2;
-						}
-						snek.Grow();
-						++score;
+						--snekMovePeriod;
 					}
-					snek.MoveBy( delta_loc );
-					if( eating )
-					{
-						goal.Respawn( rng,brd,snek );
-					}
+					snek.Grow();
+					++score;
+				}
+				snek.MoveBy( delta_loc );
+				if( eating )
+				{
+					goal.Respawn( rng,brd,snek );
 				}
 			}
 		}

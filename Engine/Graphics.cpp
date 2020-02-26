@@ -55,7 +55,7 @@ Graphics::Graphics( HWNDKey& key )
 	sd.OutputWindow = key.hWnd;
 	sd.SampleDesc.Count = 1;
 	sd.SampleDesc.Quality = 0;
-	sd.Windowed = TRUE;
+	sd.Windowed = FALSE;
 
 	D3D_FEATURE_LEVEL	featureLevelsRequested = D3D_FEATURE_LEVEL_9_1;
 	UINT				numLevelsRequested = 1;
