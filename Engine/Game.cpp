@@ -23,6 +23,8 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	const float dt = ft.Mark();
+
 	if( gameIsStarted )
 	{
 		if( !gameIsOver )
