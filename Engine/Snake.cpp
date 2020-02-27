@@ -29,6 +29,12 @@ Location Snake::GetNextHeadLocation( const Location& delta_loc ) const
 	return l;
 }
 
+Location Snake::GetHeadLocation() const
+{
+	Location l(segments[0].GetLocation());
+	return l;
+}
+
 void Snake::Grow()
 {
 	if( nSegments < nSegmentsMax )

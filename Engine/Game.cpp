@@ -9,7 +9,8 @@ Game::Game( MainWindow& wnd )
 	brd( gfx ),
 	rng( std::random_device()() ),
 	snek({31, 17}),
-	goal( rng,brd,snek )
+	goal(rng, brd, snek),
+	obstacle(rng, brd, snek)
 {
 }
 
@@ -64,16 +65,18 @@ void Game::UpdateModel()
 
 			const Location next = snek.GetNextHeadLocation(delta_loc);
 			if (!brd.IsInsideBoard(next) ||
-				snek.IsInTileExceptEnd(next))
+				snek.IsInTileExceptEnd(next) ||
+				snek.GetHeadLocation() == obstacle.GetLocation())
 			{
 				gameIsOver = true;
 			}
 
-			snekMoveCounter += 60 * dt;
+			snekMoveCounter += 60.0f * dt;
 			if( snekMoveCounter >= snekMovePeriod )
 			{
 				canChangeOrientation = true;
-				snekMoveCounter = 0;
+				snekMoveCounter = 0.0f;
+				obstacle.Update();
 				const Location next = snek.GetNextHeadLocation( delta_loc );
 				if( !brd.IsInsideBoard( next ) ||
 					snek.IsInTileExceptEnd( next ) )
@@ -83,9 +86,9 @@ void Game::UpdateModel()
 				const bool eating = next == goal.GetLocation();
 				if( eating )
 				{
-					if (snekMovePeriod >= 3 && score >= 10)
+					if (snekMovePeriod >= 3.0f && score >= 5)
 					{
-						--snekMovePeriod;
+						snekMovePeriod -= 2.0f;
 					}
 					snek.Grow();
 					++score;
@@ -108,13 +111,14 @@ void Game::ComposeFrame()
 {
 	if( gameIsStarted )
 	{
-		snek.Draw( brd );
-		goal.Draw( brd );
+		goal.Draw(brd);
+		snek.Draw(brd);
+		obstacle.Draw(brd);
+		brd.DrawBorder();
 		if( gameIsOver )
 		{
 			SpriteCodex::DrawGameOver((gfx.ScreenWidth / 2) - 42,(gfx.ScreenHeight / 2) - 32,gfx);
 		}
-		brd.DrawBorder();
 	}
 	else
 	{

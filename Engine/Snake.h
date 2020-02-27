@@ -24,6 +24,7 @@ public:
 	Snake( const Location& loc);
 	void MoveBy( const Location& delta_loc );
 	Location GetNextHeadLocation( const Location& delta_loc ) const;
+	Location GetHeadLocation() const;
 	void Grow();
 	void Draw( Board& brd ) const;
 	bool IsInTileExceptEnd( const Location& target ) const;
