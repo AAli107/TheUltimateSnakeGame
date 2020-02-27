@@ -1,15 +1,16 @@
 #include "Obstacle.h"
 
-Obstacle::Obstacle(std::mt19937& rng, const Board& brd, const Snake& snake)
+void Obstacle::Init(std::mt19937& rng, const Board& brd, const Snake& snake)
 {
 	Respawn(rng, brd, snake);
-	
 }
 
 void Obstacle::Respawn(std::mt19937& rng, const Board& brd, const Snake& snake)
 {
-	std::uniform_int_distribution<int> xDist(2, brd.GetGridWidth() - 2);
-	std::uniform_int_distribution<int> yDist(2, brd.GetGridHeight() - 2);
+	std::uniform_int_distribution<int> xDist(6, brd.GetGridWidth() - 6);
+	std::uniform_int_distribution<int> yDist(6, brd.GetGridHeight() - 6);
+	std::uniform_int_distribution<int> ColorRange(100, 150);
+	std::uniform_int_distribution<int> deltalocOffset(-1, 1);
 
 	Location newLoc;
 	do
@@ -19,6 +20,18 @@ void Obstacle::Respawn(std::mt19937& rng, const Board& brd, const Snake& snake)
 	} while (snake.IsInTile(newLoc));
 
 	loc = newLoc;
+	c = Colors::MakeRGB(ColorRange(rng), ColorRange(rng), ColorRange(rng));
+	delta_loc.x = deltalocOffset(rng);
+	delta_loc.y = deltalocOffset(rng);
+
+	if (delta_loc.x == 0)
+	{
+		delta_loc.x = deltalocOffset(rng);
+	}
+	if (delta_loc.y == 0)
+	{
+		delta_loc.y = deltalocOffset(rng);
+	}
 }
 
 void Obstacle::Draw(Board& brd) const

@@ -9,9 +9,12 @@ Game::Game( MainWindow& wnd )
 	brd( gfx ),
 	rng( std::random_device()() ),
 	snek({31, 17}),
-	goal(rng, brd, snek),
-	obstacle(rng, brd, snek)
+	goal(rng, brd, snek)
 {
+	for (int i = 0; i < nObstacle; i++)
+	{
+		obstacle[i].Init(rng, brd, snek);
+	}
 }
 
 void Game::Go()
@@ -63,10 +66,17 @@ void Game::UpdateModel()
 				}
 			}
 
+			for (int i = 0; i < nObstacle; i++)
+			{
+				if (snek.GetHeadLocation() == obstacle[i].GetLocation())
+				{
+					gameIsOver = true;
+				}
+			}
+
 			const Location next = snek.GetNextHeadLocation(delta_loc);
 			if (!brd.IsInsideBoard(next) ||
-				snek.IsInTileExceptEnd(next) ||
-				snek.GetHeadLocation() == obstacle.GetLocation())
+				snek.IsInTileExceptEnd(next))
 			{
 				gameIsOver = true;
 			}
@@ -76,7 +86,10 @@ void Game::UpdateModel()
 			{
 				canChangeOrientation = true;
 				snekMoveCounter = 0.0f;
-				obstacle.Update();
+				for (int i = 0; i < nObstacle; i++)
+				{
+					obstacle[i].Update();
+				}
 				const Location next = snek.GetNextHeadLocation( delta_loc );
 				if( !brd.IsInsideBoard( next ) ||
 					snek.IsInTileExceptEnd( next ) )
@@ -86,7 +99,7 @@ void Game::UpdateModel()
 				const bool eating = next == goal.GetLocation();
 				if( eating )
 				{
-					if (snekMovePeriod >= 3.0f && score >= 5)
+					if (snekMovePeriod >= 4.0f && score >= 5)
 					{
 						snekMovePeriod -= 2.0f;
 					}
@@ -113,7 +126,10 @@ void Game::ComposeFrame()
 	{
 		goal.Draw(brd);
 		snek.Draw(brd);
-		obstacle.Draw(brd);
+		for (int i = 0; i < nObstacle; i++)
+		{
+			obstacle[i].Draw(brd);
+		}
 		brd.DrawBorder();
 		if( gameIsOver )
 		{

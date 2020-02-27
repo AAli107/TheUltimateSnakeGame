@@ -12,6 +12,6 @@ public:
 	void Draw( Board& brd ) const;
 	const Location& GetLocation() const;
 private:
-	static constexpr Color c = Colors::Red;
+	Color c = Colors::Red;
 	Location loc;
 };

@@ -48,18 +48,19 @@ private:
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
-	FrameTimer ft;
-	Board brd;
-	Snake snek;
-	Obstacle obstacle;
-	Location delta_loc = {1,0};
-	std::mt19937 rng;
-	Goal goal;
 	float snekMovePeriod = 40.0f;
 	float snekMoveCounter = 0.0f;
 	int score = 0;
+	static const int nObstacle = 10;
 	bool gameIsOver = false;
 	bool gameIsStarted = false;
 	bool canChangeOrientation = true;
+	std::mt19937 rng;
+	FrameTimer ft;
+	Board brd;
+	Snake snek;
+	Obstacle obstacle[nObstacle];
+	Location delta_loc = { 1,0 };
+	Goal goal;
 	/********************************/
 };
