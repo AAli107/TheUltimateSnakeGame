@@ -3,14 +3,19 @@
 
 Snake::Snake( const Location& loc)
 {
+	Init(loc);
+}
+
+void Snake::Init(const Location& loc)
+{
 	std::uniform_int_distribution<int> ColorRange(150, 200);
 
-	for( int i = 0; i < nSegmentsMax; ++i )
+	for (int i = 0; i < nSegmentsMax; ++i)
 	{
-		segments[i].InitBody( Colors::MakeRGB(0, ColorRange(rng), 0) );
+		segments[i].InitBody(Colors::MakeRGB(0, ColorRange(rng), 0));
 	}
 
-	segments[0].InitHead( loc );
+	segments[0].InitHead(loc);
 }
 
 void Snake::MoveBy( const Location& delta_loc )
@@ -75,7 +80,7 @@ bool Snake::IsInTile( const Location& target ) const
 	return false;
 }
 
-void Snake::Segment::InitHead( const Location& in_loc )
+void Snake::Segment::InitHead( const Location& in_loc)
 {
 	loc = in_loc;
 	c = Snake::headColor;
@@ -99,7 +104,7 @@ void Snake::Segment::MoveBy( const Location& delta_loc )
 
 void Snake::Segment::Draw( Board& brd ) const
 {
-	brd.DrawCell(loc,c, false);
+	brd.DrawCell(loc, c, false);
 }
 
 const Location& Snake::Segment::GetLocation() const

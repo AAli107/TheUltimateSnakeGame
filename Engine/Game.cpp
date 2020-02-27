@@ -33,44 +33,46 @@ void Game::UpdateModel()
 	{
 		if( !gameIsOver )
 		{
-			if (wnd.kbd.KeyIsPressed(VK_SHIFT))
+			if (wnd.kbd.KeyIsPressed('P')) // Pause Game
 			{
 				gameIsStarted = false;
 			}
 
-			if (wnd.kbd.KeyIsPressed(VK_UP) && canChangeOrientation)
+			// Controls the direction of the snake
+			if (wnd.kbd.KeyIsPressed(VK_UP) && canChangeDirection)
 			{
 				if (delta_loc.y != 1) 
 				{
-					canChangeOrientation = false;
+					canChangeDirection = false;
 					delta_loc = { 0,-1 };
 				}
 			}
-			else if( wnd.kbd.KeyIsPressed( VK_DOWN ) && canChangeOrientation)
+			if( wnd.kbd.KeyIsPressed(VK_DOWN) && canChangeDirection)
 			{
 				if (delta_loc.y != -1)
 				{
-					canChangeOrientation = false;
+					canChangeDirection = false;
 					delta_loc = { 0,1 };
 				}
 			}
-			else if( wnd.kbd.KeyIsPressed( VK_LEFT ) && canChangeOrientation)
+			if( wnd.kbd.KeyIsPressed(VK_LEFT) && canChangeDirection)
 			{
 				if (delta_loc.x != 1)
 				{
-					canChangeOrientation = false;
+					canChangeDirection = false;
 					delta_loc = { -1,0 };
 				}
 			}
-			else if (wnd.kbd.KeyIsPressed(VK_RIGHT) && canChangeOrientation)
+			if (wnd.kbd.KeyIsPressed(VK_RIGHT) && canChangeDirection)
 			{
 				if (delta_loc.x != -1)
 				{
-					canChangeOrientation = false;
+					canChangeDirection = false;
 					delta_loc = { 1,0 };
 				}
 			}
 
+			// Sets game over to true if snake collides with an obstacle
 			for (int i = 0; i < nObstacle; i++)
 			{
 				if (snek.GetHeadLocation() == obstacle[i].GetLocation())
@@ -79,6 +81,7 @@ void Game::UpdateModel()
 				}
 			}
 
+			// Sets game over to true if snake collides with itself or the edge
 			const Location next = snek.GetNextHeadLocation(delta_loc);
 			if (!brd.IsInsideBoard(next) ||
 				snek.IsInTileExceptEnd(next))
@@ -86,27 +89,25 @@ void Game::UpdateModel()
 				gameIsOver = true;
 			}
 
-			snekMoveCounter += 60.0f * dt;
+			snekMoveCounter += (gameSpeedMultiplyer * 60.0f) * dt; // Controls Game Speed
 			if( snekMoveCounter >= snekMovePeriod )
 			{
-				canChangeOrientation = true;
+				canChangeDirection = true;
 				snekMoveCounter = 0.0f;
+				
+				// Updates all the obstacles
 				for (int i = 0; i < nObstacle; i++)
 				{
 					obstacle[i].Update();
 				}
-				const Location next = snek.GetNextHeadLocation( delta_loc );
-				if( !brd.IsInsideBoard( next ) ||
-					snek.IsInTileExceptEnd( next ) )
-				{
-					gameIsOver = true;
-				}
+
+				// Grows the snake when it eats the food and switches the location of the food
 				const bool eating = next == goal.GetLocation();
 				if( eating )
 				{
-					if (snekMovePeriod >= 4.0f)
+					if (gameSpeedMultiplyer <= 8.0f)
 					{
-						snekMovePeriod -= 2.0f;
+						gameSpeedMultiplyer += 0.25f;
 					}
 					snek.Grow();
 				}
@@ -120,14 +121,31 @@ void Game::UpdateModel()
 	}
 	else
 	{
-		if (wnd.kbd.KeyIsPressed(VK_RETURN))
+		if (wnd.kbd.KeyIsPressed(VK_RETURN)) // Start game
 		{
 			gameIsStarted = true;
 		}
 	}
-	if (wnd.kbd.KeyIsPressed(VK_ESCAPE))
+	if (wnd.kbd.KeyIsPressed(VK_ESCAPE)) // Leaves game
 	{
 		exit(0);
+	}
+
+	if(gameIsOver)
+	{
+		if (wnd.kbd.KeyIsPressed('R'))
+		{
+			snek.nSegments = 2;
+			snek.Init({ 31, 17 });
+			gameSpeedMultiplyer = 1.0f;
+			delta_loc = { 1, 0 };
+			gameIsOver = false;
+			gameIsStarted = false;
+			for (int i = 0; i < nObstacle; i++)
+			{
+				obstacle[i].Init(rng, brd, snek);
+			}
+		}
 	}
 }
 
@@ -135,19 +153,22 @@ void Game::ComposeFrame()
 {
 	if( gameIsStarted )
 	{
-		goal.Draw(brd);
-		snek.Draw(brd);
+		goal.Draw(brd); // Draws food
+		snek.Draw(brd); // Draws Snake and it's segments
+		brd.DrawBorder(); // Draws the Border
+
+		// Draws the obstacles
 		for (int i = 0; i < nObstacle; i++)
 		{
 			obstacle[i].Draw(brd);
 		}
-		brd.DrawBorder();
-		if( gameIsOver )
+
+		if( gameIsOver ) // Draws game over message if game ends
 		{
 			SpriteCodex::DrawGameOver((gfx.ScreenWidth / 2) - 42,(gfx.ScreenHeight / 2) - 32,gfx);
 		}
 	}
-	else
+	else // Draws Main menu message
 	{
 		SpriteCodex::DrawTitle((gfx.ScreenWidth / 2) - 110, (gfx.ScreenHeight / 2) - 64,gfx );
 	}

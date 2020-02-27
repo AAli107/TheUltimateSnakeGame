@@ -28,12 +28,13 @@ private:
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
-	float snekMovePeriod = 40.0f;
+	float snekMovePeriod = 10.0f;
 	float snekMoveCounter = 0.0f;
-	static const int nObstacle = 10;
+	float gameSpeedMultiplyer = 1.0f;
+	static const int nObstacle = 5;
 	bool gameIsOver = false;
 	bool gameIsStarted = false;
-	bool canChangeOrientation = true;
+	bool canChangeDirection = true;
 	bool InhibitEnter = false;
 	std::mt19937 rng;
 	FrameTimer ft;
