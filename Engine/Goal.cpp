@@ -24,7 +24,7 @@ void Goal::Respawn( std::mt19937 & rng,const Board & brd,const Snake & snake )
 
 void Goal::Draw( Board & brd ) const
 {
-	brd.DrawCell( loc,c );
+	brd.DrawCell(loc, c, true);
 }
 
 const Location& Goal::GetLocation() const

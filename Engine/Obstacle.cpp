@@ -11,6 +11,16 @@ void Obstacle::Respawn(std::mt19937& rng, const Board& brd, const Snake& snake)
 	std::uniform_int_distribution<int> yDist(6, brd.GetGridHeight() - 6);
 	std::uniform_int_distribution<int> ColorRange(100, 150);
 	std::uniform_int_distribution<int> deltalocOffset(-1, 1);
+	std::uniform_int_distribution<int> RandomBool(0, 1);
+
+	if (RandomBool(rng) == 1)
+	{
+		isCircle = true;
+	}
+	else 
+	{
+		isCircle = false;
+	}
 
 	Location newLoc;
 	do
@@ -26,17 +36,18 @@ void Obstacle::Respawn(std::mt19937& rng, const Board& brd, const Snake& snake)
 
 	if (delta_loc.x == 0)
 	{
-		delta_loc.x = deltalocOffset(rng);
+		Respawn(rng, brd, snake);
 	}
 	if (delta_loc.y == 0)
 	{
-		delta_loc.y = deltalocOffset(rng);
+		Respawn(rng, brd, snake);
 	}
 }
 
 void Obstacle::Draw(Board& brd) const
 {
-	brd.DrawCell(loc, c);
+
+	brd.DrawCell(loc, c, isCircle);
 }
 
 void Obstacle::Update()

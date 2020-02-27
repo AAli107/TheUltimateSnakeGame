@@ -33,6 +33,11 @@ void Game::UpdateModel()
 	{
 		if( !gameIsOver )
 		{
+			if (wnd.kbd.KeyIsPressed(VK_ESCAPE))
+			{
+				gameIsStarted = false;
+			}
+
 			if (wnd.kbd.KeyIsPressed(VK_UP) && canChangeOrientation)
 			{
 				if (delta_loc.y != 1) 
@@ -99,12 +104,11 @@ void Game::UpdateModel()
 				const bool eating = next == goal.GetLocation();
 				if( eating )
 				{
-					if (snekMovePeriod >= 4.0f && score >= 5)
+					if (snekMovePeriod >= 4.0f)
 					{
 						snekMovePeriod -= 2.0f;
 					}
 					snek.Grow();
-					++score;
 				}
 				snek.MoveBy( delta_loc );
 				if( eating )
@@ -116,7 +120,10 @@ void Game::UpdateModel()
 	}
 	else
 	{
-		gameIsStarted = wnd.kbd.KeyIsPressed( VK_RETURN );
+		if (wnd.kbd.KeyIsPressed(VK_RETURN))
+		{
+			gameIsStarted = true;
+		}
 	}
 }
 

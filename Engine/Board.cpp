@@ -6,17 +6,23 @@ Board::Board( Graphics& gfx )
 	gfx( gfx )
 {}
 
-void Board::DrawCell( const Location & loc,Color c )
+void Board::DrawCell(const Location& loc, Color c, bool isCircle)
 {
-	assert( loc.x >= 0 );
-	assert( loc.x < width );
-	assert( loc.y >= 0 );
-	assert( loc.y < height );
+	assert(loc.x >= 0);
+	assert(loc.x < width);
+	assert(loc.y >= 0);
+	assert(loc.y < height);
 
 	const int off_x = x + borderWidth + borderPadding;
 	const int off_y = y + borderWidth + borderPadding;
-
-	gfx.DrawRectDim( loc.x * dimension + off_x + cellPadding,loc.y * dimension + off_y + cellPadding,dimension - cellPadding * 2,dimension - cellPadding * 2,c );
+	if (isCircle)
+	{
+		gfx.DrawCircle(loc.x * dimension + off_x + (dimension / 2) + cellPadding, loc.y * dimension + off_y + (dimension / 2) + cellPadding, dimension / 2, c);
+	}
+	else 
+	{
+		gfx.DrawRectDim(loc.x * dimension + off_x + cellPadding, loc.y * dimension + off_y + cellPadding, dimension - cellPadding * 2, dimension - cellPadding * 2, c);
+	}
 }
 
 int Board::GetGridWidth() const

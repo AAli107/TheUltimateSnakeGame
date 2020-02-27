@@ -16,4 +16,5 @@ private:
 	Color c = Colors::MakeRGB(64, 64, 64);
 	Location loc;
 	Location delta_loc = {1, 1};
+	bool isCircle = false;
 };
