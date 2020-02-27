@@ -107,7 +107,7 @@ void Game::UpdateModel()
 				{
 					if (gameSpeedMultiplyer <= 8.0f)
 					{
-						gameSpeedMultiplyer += 0.25f;
+						gameSpeedMultiplyer += 0.1f;
 					}
 					snek.Grow();
 				}

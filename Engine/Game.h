@@ -28,7 +28,7 @@ private:
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
-	float snekMovePeriod = 10.0f;
+	float snekMovePeriod = 15.0f;
 	float snekMoveCounter = 0.0f;
 	float gameSpeedMultiplyer = 1.0f;
 	static const int nObstacle = 5;
