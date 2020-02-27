@@ -33,7 +33,7 @@ void Game::UpdateModel()
 	{
 		if( !gameIsOver )
 		{
-			if (wnd.kbd.KeyIsPressed(VK_ESCAPE))
+			if (wnd.kbd.KeyIsPressed(VK_SHIFT))
 			{
 				gameIsStarted = false;
 			}
@@ -124,6 +124,10 @@ void Game::UpdateModel()
 		{
 			gameIsStarted = true;
 		}
+	}
+	if (wnd.kbd.KeyIsPressed(VK_ESCAPE))
+	{
+		exit(0);
 	}
 }
 

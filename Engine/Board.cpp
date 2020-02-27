@@ -17,7 +17,7 @@ void Board::DrawCell(const Location& loc, Color c, bool isCircle)
 	const int off_y = y + borderWidth + borderPadding;
 	if (isCircle)
 	{
-		gfx.DrawCircle(loc.x * dimension + off_x + (dimension / 2) + cellPadding, loc.y * dimension + off_y + (dimension / 2) + cellPadding, dimension / 2, c);
+		gfx.DrawCircle((loc.x * dimension + off_x + (dimension / 2) + cellPadding) - 2, (loc.y * dimension + off_y + (dimension / 2) + cellPadding) - 2, (dimension / 2) - 2, c);
 	}
 	else 
 	{
