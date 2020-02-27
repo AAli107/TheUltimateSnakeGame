@@ -141,6 +141,7 @@ void Game::UpdateModel()
 			delta_loc = { 1, 0 };
 			gameIsOver = false;
 			gameIsStarted = false;
+			goal.Respawn(rng, brd, snek);
 			for (int i = 0; i < nObstacle; i++)
 			{
 				obstacle[i].Init(rng, brd, snek);
