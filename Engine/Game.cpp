@@ -2,7 +2,7 @@
 #include "Game.h"
 #include "SpriteCodex.h"
 
-Game::Game( MainWindow& wnd )
+Game::Game( MainWindow& wnd ) // Initilizes the game
 	:
 	wnd( wnd ),
 	gfx( wnd ),
@@ -17,7 +17,7 @@ Game::Game( MainWindow& wnd )
 	}
 }
 
-void Game::Go()
+void Game::Go() // Single Frame sequence
 {
 	gfx.BeginFrame();	
 	UpdateModel();
@@ -39,7 +39,7 @@ void Game::UpdateModel()
 			}
 
 			// Controls the direction of the snake
-			if (wnd.kbd.KeyIsPressed(VK_UP) && canChangeDirection)
+			if (wnd.kbd.KeyIsPressed(VK_UP) && canChangeDirection) // Move snake Up
 			{
 				if (delta_loc.y != 1) 
 				{
@@ -47,7 +47,7 @@ void Game::UpdateModel()
 					delta_loc = { 0,-1 };
 				}
 			}
-			if( wnd.kbd.KeyIsPressed(VK_DOWN) && canChangeDirection)
+			if( wnd.kbd.KeyIsPressed(VK_DOWN) && canChangeDirection) // Move snake Down
 			{
 				if (delta_loc.y != -1)
 				{
@@ -55,7 +55,7 @@ void Game::UpdateModel()
 					delta_loc = { 0,1 };
 				}
 			}
-			if( wnd.kbd.KeyIsPressed(VK_LEFT) && canChangeDirection)
+			if( wnd.kbd.KeyIsPressed(VK_LEFT) && canChangeDirection) // Move snake Left
 			{
 				if (delta_loc.x != 1)
 				{
@@ -63,7 +63,7 @@ void Game::UpdateModel()
 					delta_loc = { -1,0 };
 				}
 			}
-			if (wnd.kbd.KeyIsPressed(VK_RIGHT) && canChangeDirection)
+			if (wnd.kbd.KeyIsPressed(VK_RIGHT) && canChangeDirection) // Move snake Right
 			{
 				if (delta_loc.x != -1)
 				{
@@ -95,7 +95,7 @@ void Game::UpdateModel()
 				canChangeDirection = true;
 				snekMoveCounter = 0.0f;
 				
-				// Updates all the obstacles
+				// Updates all the obstacles in game
 				for (int i = 0; i < nObstacle; i++)
 				{
 					obstacle[i].Update();
@@ -114,26 +114,26 @@ void Game::UpdateModel()
 				snek.MoveBy( delta_loc );
 				if( eating )
 				{
-					goal.Respawn( rng,brd,snek );
+					goal.Respawn( rng,brd,snek ); // Changes food location when snake eats it
 				}
 			}
 		}
 	}
 	else
 	{
-		if (wnd.kbd.KeyIsPressed(VK_RETURN)) // Start game
+		if (wnd.kbd.KeyIsPressed(VK_RETURN)) // Starts game when pressing enter
 		{
 			gameIsStarted = true;
 		}
 	}
-	if (wnd.kbd.KeyIsPressed(VK_ESCAPE)) // Leaves game
+	if (wnd.kbd.KeyIsPressed(VK_ESCAPE)) // Leaves game when pressing escape button
 	{
 		exit(0);
 	}
 
 	if(gameIsOver)
 	{
-		if (wnd.kbd.KeyIsPressed('R'))
+		if (wnd.kbd.KeyIsPressed('R')) // Restarts game when pressing 'R' if game is over
 		{
 			snek.nSegments = 2;
 			snek.Init({ 31, 17 });
@@ -154,9 +154,9 @@ void Game::ComposeFrame()
 {
 	if( gameIsStarted )
 	{
-		goal.Draw(brd); // Draws food
+		goal.Draw(brd); // Draws food/goal
 		snek.Draw(brd); // Draws Snake and it's segments
-		brd.DrawBorder(); // Draws the Border
+		brd.DrawBorder(); // Draws the game Border
 
 		// Draws the obstacles
 		for (int i = 0; i < nObstacle; i++)
@@ -169,7 +169,7 @@ void Game::ComposeFrame()
 			SpriteCodex::DrawGameOver((gfx.ScreenWidth / 2) - 42,(gfx.ScreenHeight / 2) - 32,gfx);
 		}
 	}
-	else // Draws Main menu message
+	else // Draws Main menu image if game is not started
 	{
 		SpriteCodex::DrawTitle((gfx.ScreenWidth / 2) - 110, (gfx.ScreenHeight / 2) - 64,gfx );
 	}
