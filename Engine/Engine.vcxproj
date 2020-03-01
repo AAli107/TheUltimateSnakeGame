@@ -152,6 +152,7 @@
     <ClInclude Include="Obstacle.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Snake.h" />
+    <ClInclude Include="Sound.h" />
     <ClInclude Include="SpriteCodex.h" />
   </ItemGroup>
   <ItemGroup>
@@ -167,6 +168,7 @@
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="Snake.cpp" />
+    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="SpriteCodex.cpp" />
   </ItemGroup>
   <ItemGroup>
