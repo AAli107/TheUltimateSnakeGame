@@ -3,6 +3,7 @@
 #include "Keyboard.h"
 #include "Mouse.h"
 #include "Graphics.h"
+#include "Sound.h"
 #include "Board.h"
 #include "Snake.h"
 #include "Goal.h"
@@ -36,6 +37,7 @@ private:
 	bool gameIsStarted = false;
 	bool canChangeDirection = true;
 	bool InhibitEnter = false;
+	bool gameOverPlay = true;
 	std::mt19937 rng;
 	FrameTimer ft;
 	Board brd;
@@ -43,5 +45,8 @@ private:
 	Obstacle obstacle[nObstacle];
 	Location delta_loc = { 1,0 };
 	Goal goal;
+	Sound Collect = L"Sounds\\SnakeEat.wav";
+	Sound Death = L"Sounds\\LoseGame.wav";
+	Sound Beep = L"Sounds\\Beep.wav";
 	/********************************/
 };

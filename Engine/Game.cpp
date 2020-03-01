@@ -92,8 +92,10 @@ void Game::UpdateModel()
 			snekMoveCounter += (gameSpeedMultiplyer * 60.0f) * dt; // Controls Game Speed
 			if( snekMoveCounter >= snekMovePeriod )
 			{
+				std::uniform_real_distribution<float> DistP(0.75f, 1.25f);
 				canChangeDirection = true;
 				snekMoveCounter = 0.0f;
+				Beep.Play(DistP(rng), 0.75f);
 				
 				// Updates all the obstacles in game
 				for (int i = 0; i < nObstacle; i++)
@@ -110,12 +112,21 @@ void Game::UpdateModel()
 						gameSpeedMultiplyer += 0.1f;
 					}
 					snek.Grow();
+					Collect.Play();
 				}
 				snek.MoveBy( delta_loc );
 				if( eating )
 				{
 					goal.Respawn( rng,brd,snek ); // Changes food location when snake eats it
 				}
+			}
+		}
+		else
+		{
+			if (gameOverPlay)
+			{
+				Death.Play();
+				gameOverPlay = false;
 			}
 		}
 	}
@@ -141,6 +152,7 @@ void Game::UpdateModel()
 			delta_loc = { 1, 0 };
 			gameIsOver = false;
 			gameIsStarted = false;
+			gameOverPlay = true;
 			goal.Respawn(rng, brd, snek);
 			for (int i = 0; i < nObstacle; i++)
 			{
