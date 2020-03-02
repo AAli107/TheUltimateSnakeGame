@@ -112,6 +112,21 @@ void Game::UpdateModel()
 				canChangeDirection = true;
 				snekMoveCounter = 0.0f;
 
+				for (int i = 0; i < nDirt; i++)
+				{
+					if (snek.IsInTile(dirt[i].GetLocation()))
+					{
+						dirt[i].RandomColor(rng);
+					}
+					for (int i2 = 0; i2 < nObstacle; i2++)
+					{
+						if (obstacle[i2].GetLocation() == dirt[i].GetLocation())
+						{
+							dirt[i].RandomColor(rng);
+						}
+					}
+				}
+
 				if (BoolRand(rng) == 1)
 				{
 					PlayBeep = true;

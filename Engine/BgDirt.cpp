@@ -9,12 +9,9 @@ void BgDirt::Respawn(std::mt19937& rng, const Board& brd)
 {
 	std::uniform_int_distribution<int> xDist(0, brd.GetGridWidth() - 2);
 	std::uniform_int_distribution<int> yDist(0, brd.GetGridHeight() - 2);
-	std::uniform_int_distribution<int> ColorRange(-5, 5);
 	std::uniform_int_distribution<int> RandomBool(0, 1);
 
-	int cOffset = ColorRange(rng);
-
-	c = Colors::MakeRGB(87 + cOffset, 46 + cOffset, 0);
+	RandomColor(rng);
 
 	loc.x = xDist(rng);
 	loc.y = yDist(rng);
@@ -29,4 +26,16 @@ void BgDirt::SetLocation(int x, int y)
 {
 	loc.x = x;
 	loc.y = y;
+}
+
+void BgDirt::RandomColor(std::mt19937& rng)
+{
+	std::uniform_int_distribution<int> ColorRange(-5, 5);
+	int cOffset = ColorRange(rng);
+	c = Colors::MakeRGB(87 + cOffset, 46 + cOffset, 0);
+}
+
+Location BgDirt::GetLocation() const
+{
+	return loc;
 }

@@ -11,6 +11,8 @@ public:
 	void Respawn(std::mt19937& rng, const Board& brd);
 	void Draw(Board& brd) const;
 	void SetLocation(int x, int y);
+	void RandomColor(std::mt19937& rng);
+	Location GetLocation() const;
 private:
 	Color c = Colors::MakeRGB(87, 46, 0);
 	Location loc;
