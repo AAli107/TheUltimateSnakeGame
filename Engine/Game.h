@@ -45,8 +45,9 @@ private:
 	Board brd;
 	Snake snek;
 	Obstacle obstacle[nObstacle];
-	Location delta_loc = { 1,0 };
+	Location delta_loc = {1, 0};
 	Goal goal;
+	Color bgColor = Colors::MakeRGB(87, 46, 0);
 	Sound Collect = L"Sounds\\SnakeEat.wav";
 	Sound Death = L"Sounds\\LoseGame.wav";
 	Sound Beep = L"Sounds\\Beep.wav";

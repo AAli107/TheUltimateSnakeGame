@@ -204,6 +204,7 @@ void Game::ComposeFrame()
 {
 	if( gameIsStarted )
 	{
+		gfx.DrawRectDim(0, 0, gfx.ScreenWidth, gfx.ScreenHeight, bgColor); // Set Background Color
 		goal.Draw(brd); // Draws food/goal
 		snek.Draw(brd); // Draws Snake and it's segments
 		brd.DrawBorder(); // Draws the game Border
