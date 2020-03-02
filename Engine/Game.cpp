@@ -33,7 +33,7 @@ void Game::UpdateModel()
 	{
 		if (gameIsOver)
 		{
-			gameSpeedMultiplyer = 2.0f;
+			gameSpeedMultiplyer = 3.0f;
 			snekMoveCounter += (gameSpeedMultiplyer * 60.0f) * dt;
 			if (snekMoveCounter >= snekMovePeriod)
 			{
@@ -102,11 +102,39 @@ void Game::UpdateModel()
 			snekMoveCounter += (gameSpeedMultiplyer * 60.0f) * dt; // Controls Game Speed
 			if( snekMoveCounter >= snekMovePeriod )
 			{
-				std::uniform_real_distribution<float> DistP(0.75f, 1.25f);
+				std::uniform_int_distribution<int> BoolRand(0, 1);
+				std::uniform_int_distribution<int> BoolRandLow(0, 3);
+				std::uniform_real_distribution<float> DistP(0.5f, 1.5f);
 				canChangeDirection = true;
 				snekMoveCounter = 0.0f;
-				Beep.Play(DistP(rng), 0.75f);
-				
+
+				if (BoolRand(rng) == 1)
+				{
+					PlayBeep = true;
+				}
+				else
+				{
+					PlayBeep = false;
+				}
+
+				if (BoolRandLow(rng) == 1)
+				{
+					PlayNoise = true;
+				}
+				else
+				{
+					PlayNoise = false;
+				}
+
+				if (PlayBeep) 
+				{
+					Beep.Play(DistP(rng), 0.75f);
+				}
+				if (PlayNoise)
+				{
+					Noise.Play(DistP(rng), 0.75f);
+				}
+
 				// Updates all the obstacles in game
 				for (int i = 0; i < nObstacle; i++)
 				{

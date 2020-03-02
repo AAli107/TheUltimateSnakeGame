@@ -38,6 +38,8 @@ private:
 	bool canChangeDirection = true;
 	bool InhibitEnter = false;
 	bool gameOverPlay = true;
+	bool PlayBeep = false;
+	bool PlayNoise = false;
 	std::mt19937 rng;
 	FrameTimer ft;
 	Board brd;
@@ -48,5 +50,6 @@ private:
 	Sound Collect = L"Sounds\\SnakeEat.wav";
 	Sound Death = L"Sounds\\LoseGame.wav";
 	Sound Beep = L"Sounds\\Beep.wav";
+	Sound Noise = L"Sounds\\Noise.wav";
 	/********************************/
 };
