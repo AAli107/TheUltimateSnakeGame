@@ -31,6 +31,16 @@ void Game::UpdateModel()
 
 	if( gameIsStarted )
 	{
+		if (gameIsOver)
+		{
+			gameSpeedMultiplyer = 2.0f;
+			snekMoveCounter += (gameSpeedMultiplyer * 60.0f) * dt;
+			if (snekMoveCounter >= snekMovePeriod)
+			{
+				snekMoveCounter = 0.0f;
+				snek.nSegments--;
+			}
+		}
 		if( !gameIsOver )
 		{
 			if (wnd.kbd.KeyIsPressed('P')) // Pause Game
