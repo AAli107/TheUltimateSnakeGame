@@ -14,7 +14,7 @@ public:
 	void DrawBorder();
 	int GetTotalCells() const;
 public:
-	static constexpr Color borderColor = Colors::MakeRGB(128, 128, 128);
+	static constexpr Color borderColor = Colors::MakeRGB(150, 200, 0);
 	static constexpr int dimension = 30;
 	static constexpr int cellPadding = 1;
 	static constexpr int width = 63;
