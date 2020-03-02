@@ -251,6 +251,7 @@ void Game::ComposeFrame()
 	}
 	else // Draws Main menu image if game is not started
 	{
-		SpriteCodex::DrawTitle((gfx.ScreenWidth / 2) - 110, (gfx.ScreenHeight / 2) - 64,gfx );
+		gfx.DrawRectDim(0, 0, gfx.ScreenWidth, gfx.ScreenHeight, MenuBgColor); // Set Background Color of main menu
+		SpriteCodex::DrawTitle((gfx.ScreenWidth / 2) - 110, (gfx.ScreenHeight / 2) - 64,gfx ); // Menu message
 	}
 }

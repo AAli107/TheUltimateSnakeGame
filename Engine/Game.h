@@ -34,7 +34,7 @@ private:
 	float snekMoveCounter = 0.0f;
 	float gameSpeedMultiplyer = 1.0f;
 	static const int nObstacle = 5;
-	static const int nDirt = 2205;
+	static const int nDirt = 9001;
 	bool gameIsOver = false;
 	bool gameIsStarted = false;
 	bool canChangeDirection = true;
@@ -51,6 +51,7 @@ private:
 	Location delta_loc = {1, 0};
 	Goal goal;
 	Color bgColor = Colors::MakeRGB(87, 46, 0);
+	Color MenuBgColor = Colors::MakeRGB(50, 100, 50);
 	Sound Collect = L"Sounds\\SnakeEat.wav";
 	Sound Death = L"Sounds\\LoseGame.wav";
 	Sound Beep = L"Sounds\\Beep.wav";
