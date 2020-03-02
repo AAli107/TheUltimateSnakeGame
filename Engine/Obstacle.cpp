@@ -46,8 +46,10 @@ void Obstacle::Respawn(std::mt19937& rng, const Board& brd, const Snake& snake)
 
 void Obstacle::Draw(Board& brd) const
 {
-
-	brd.DrawCell(loc, c, isCircle);
+	if (isVisible)
+	{
+		brd.DrawCell(loc, c, isCircle);
+	}
 }
 
 void Obstacle::Update()
@@ -68,5 +70,10 @@ void Obstacle::Update()
 const Location& Obstacle::GetLocation() const
 {
 	return loc;
+}
+
+void Obstacle::SetVisibility(bool visible)
+{
+	isVisible = visible;
 }
 

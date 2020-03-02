@@ -12,9 +12,11 @@ public:
 	void Draw(Board& brd) const;
 	void Update();
 	const Location& GetLocation() const;
+	void SetVisibility(bool visible);
 private:
 	Color c = Colors::MakeRGB(64, 64, 64);
 	Location loc;
 	Location delta_loc = {1, 1};
 	bool isCircle = false;
+	bool isVisible = true;
 };
