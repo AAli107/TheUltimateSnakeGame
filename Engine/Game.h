@@ -8,6 +8,7 @@
 #include "Snake.h"
 #include "Goal.h"
 #include "Obstacle.h"
+#include "BgDirt.h"
 #include "FrameTimer.h"
 #include <random>
 
@@ -33,6 +34,7 @@ private:
 	float snekMoveCounter = 0.0f;
 	float gameSpeedMultiplyer = 1.0f;
 	static const int nObstacle = 5;
+	static const int nDirt = 2205;
 	bool gameIsOver = false;
 	bool gameIsStarted = false;
 	bool canChangeDirection = true;
@@ -45,6 +47,7 @@ private:
 	Board brd;
 	Snake snek;
 	Obstacle obstacle[nObstacle];
+	BgDirt dirt[nDirt];
 	Location delta_loc = {1, 0};
 	Goal goal;
 	Color bgColor = Colors::MakeRGB(87, 46, 0);

@@ -12,6 +12,7 @@ public:
 	int GetGridHeight() const;
 	bool IsInsideBoard( const Location& loc ) const;
 	void DrawBorder();
+	int GetTotalCells() const;
 public:
 	static constexpr Color borderColor = Colors::MakeRGB(128, 128, 128);
 	static constexpr int dimension = 30;

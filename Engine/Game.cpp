@@ -15,6 +15,10 @@ Game::Game( MainWindow& wnd ) // Initilizes the game
 	{
 		obstacle[i].Init(rng, brd, snek);
 	}
+	for (int i = 0; i < nDirt; i++)
+	{
+		dirt[i].Init(rng, brd);
+	}
 }
 
 void Game::Go() // Single Frame sequence
@@ -192,6 +196,10 @@ void Game::UpdateModel()
 			gameIsStarted = false;
 			gameOverPlay = true;
 			goal.Respawn(rng, brd, snek);
+			for (int i = 0; i < nDirt; i++)
+			{
+				dirt[i].Init(rng, brd);
+			}
 			for (int i = 0; i < nObstacle; i++)
 			{
 				obstacle[i].Init(rng, brd, snek);
@@ -205,6 +213,12 @@ void Game::ComposeFrame()
 	if( gameIsStarted )
 	{
 		gfx.DrawRectDim(0, 0, gfx.ScreenWidth, gfx.ScreenHeight, bgColor); // Set Background Color
+
+		for (int i = 0; i < nDirt; i++) // Draws Dirt on Background
+		{
+			dirt[i].Draw(brd);
+		}
+
 		goal.Draw(brd); // Draws food/goal
 		snek.Draw(brd); // Draws Snake and it's segments
 		brd.DrawBorder(); // Draws the game Border

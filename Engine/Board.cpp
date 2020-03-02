@@ -57,3 +57,10 @@ void Board::DrawBorder()
 	// bottom
 	gfx.DrawRect( left,bottom - borderWidth,right,bottom,borderColor );
 }
+
+int Board::GetTotalCells() const
+{
+	return width * height;
+}
+
+
