@@ -5,6 +5,7 @@
 #include "Graphics.h"
 #include "Sound.h"
 #include "Board.h"
+#include "SpriteCodex.h"
 #include "Snake.h"
 #include "Goal.h"
 #include "Obstacle.h"
@@ -43,7 +44,7 @@ private:
 	bool gameOverPlay = true;
 	bool PlayBeep = false;
 	bool PlayNoise = false;
-	Color gameOverColor = Colors::MakeRGB(150, 200, 0);
+	SpriteCodex spriteCodex;
 	std::mt19937 rng;
 	FrameTimer ft;
 	Board brd;
@@ -52,8 +53,9 @@ private:
 	BgDirt dirt[nDirt];
 	Location delta_loc = {1, 0};
 	Goal goal;
+	Color gameOverColor = Colors::MakeRGB(150, 200, 0);
 	Color bgColor = Colors::MakeRGB(87, 46, 0);
-	Color MenuBgColor = Colors::MakeRGB(50, 100, 50);
+	Color MenuBgColor = Colors::MakeRGB(89, 89, 89);
 	Sound Collect = L"Sounds\\SnakeEat.wav";
 	Sound Death = L"Sounds\\LoseGame.wav";
 	Sound Beep = L"Sounds\\Beep.wav";

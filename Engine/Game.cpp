@@ -1,6 +1,5 @@
 #include "MainWindow.h"
 #include "Game.h"
-#include "SpriteCodex.h"
 
 Game::Game( MainWindow& wnd ) // Initilizes the game
 	:
@@ -250,14 +249,13 @@ void Game::ComposeFrame()
 
 		if( gameIsOver ) // Draws game over message if game ends
 		{
-			// SpriteCodex::DrawGameOver((gfx.ScreenWidth / 2) - 42,(gfx.ScreenHeight / 2) - 32,gfx);
 			DrawGameOver();
 		}
 	}
 	else // Draws Main menu image if game is not started
 	{
 		gfx.DrawRectDim(0, 0, gfx.ScreenWidth, gfx.ScreenHeight, MenuBgColor, true); // Set Background Color of main menu
-		SpriteCodex::DrawTitle((gfx.ScreenWidth / 2) - 110, (gfx.ScreenHeight / 2) - 64,gfx ); // Menu message
+		spriteCodex.DrawTitle((gfx.ScreenWidth / 2) - 320, (gfx.ScreenHeight / 2) - 240,gfx ); // Menu Title
 	}
 }
 
