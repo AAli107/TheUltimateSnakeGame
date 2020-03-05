@@ -7,7 +7,7 @@ Game::Game( MainWindow& wnd ) // Initilizes the game
 	gfx( wnd ),
 	brd( gfx ),
 	rng( std::random_device()() ),
-	snek({ int(brd.GetGridWidth() / 2), int(brd.GetGridHeight())}),
+	snek({31, 17}),
 	goal(rng, brd, snek)
 {
 	for (int i = 0; i < nObstacle; i++)

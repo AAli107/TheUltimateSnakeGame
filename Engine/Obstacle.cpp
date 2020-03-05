@@ -34,11 +34,7 @@ void Obstacle::Respawn(std::mt19937& rng, const Board& brd, const Snake& snake)
 	delta_loc.x = deltalocOffset(rng);
 	delta_loc.y = deltalocOffset(rng);
 
-	if (delta_loc.x == 0)
-	{
-		Respawn(rng, brd, snake);
-	}
-	if (delta_loc.y == 0)
+	if (delta_loc.x == 0 || delta_loc.y == 0 || (loc.x >= 26 && loc.x <= 36 && loc.y >= 12 && loc.y <= 22))
 	{
 		Respawn(rng, brd, snake);
 	}
