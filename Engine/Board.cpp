@@ -33,7 +33,7 @@ void Board::DrawCell(const Location& loc, Color c, bool isCircle, bool hasShadin
 	{
 		if (hasShadow)
 		{
-			gfx.DrawRectDim(loc.x * dimension + (off_x - 1), loc.y * dimension + (off_y + 2), dimension, dimension, shadowColor, false);
+			gfx.DrawRectDim(loc.x * dimension + (off_x - 1), loc.y * dimension + (off_y + 3), dimension, dimension, shadowColor, false);
 		}
 		gfx.DrawRectDim(loc.x * dimension + off_x + cellPadding, loc.y * dimension + off_y + cellPadding, dimension - cellPadding, dimension - cellPadding, c, hasShading);
 	}
