@@ -246,7 +246,8 @@ void Game::ComposeFrame()
 
 		if( gameIsOver ) // Draws game over message if game ends
 		{
-			SpriteCodex::DrawGameOver((gfx.ScreenWidth / 2) - 42,(gfx.ScreenHeight / 2) - 32,gfx);
+			// SpriteCodex::DrawGameOver((gfx.ScreenWidth / 2) - 42,(gfx.ScreenHeight / 2) - 32,gfx);
+			DrawGameOver();
 		}
 	}
 	else // Draws Main menu image if game is not started
@@ -254,4 +255,86 @@ void Game::ComposeFrame()
 		gfx.DrawRectDim(0, 0, gfx.ScreenWidth, gfx.ScreenHeight, MenuBgColor, true); // Set Background Color of main menu
 		SpriteCodex::DrawTitle((gfx.ScreenWidth / 2) - 110, (gfx.ScreenHeight / 2) - 64,gfx ); // Menu message
 	}
+}
+
+void Game::DrawGameOver()
+{
+	brd.DrawCellPlain(Location({ 22,11 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 23,11 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 24,11 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 21,12 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 38,12 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 39,12 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 21,13 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 27,13 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 28,13 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 31,13 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 32,13 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 34,13 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 37,13 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 40,13 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 21,14 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 23,14 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 24,14 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 26,14 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 29,14 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 31,14 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 33,14 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 35,14 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 37,14 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 38,14 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 39,14 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 21,15 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 24,15 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 26,15 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 29,15 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 31,15 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 33,15 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 35,15 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 37,15 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 22,16 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 23,16 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 24,16 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 27,16 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 28,16 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 29,16 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 31,16 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 33,16 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 35,16 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 38,16 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 39,16 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 22,19 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 23,19 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 24,19 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 34,19 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 35,19 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 21,20 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 25,20 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 27,20 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 31,20 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 33,20 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 36,20 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 39,20 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 40,20 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 21,21 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 25,21 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 27,21 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 31,21 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 33,21 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 34,21 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 35,21 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 38,21 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 21,22 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 25,22 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 28,22 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 30,22 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 33,22 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 38,22 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 22,23 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 23,23 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 24,23 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 29,23 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 34,23 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 35,23 }), gameOverColor);
+	brd.DrawCellPlain(Location({ 38,23 }), gameOverColor);
 }

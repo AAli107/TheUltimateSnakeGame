@@ -24,6 +24,7 @@ private:
 	void UpdateModel();
 	/********************************/
 	/*  User Functions              */
+	void DrawGameOver();
 	/********************************/
 private:
 	MainWindow& wnd;
@@ -42,6 +43,7 @@ private:
 	bool gameOverPlay = true;
 	bool PlayBeep = false;
 	bool PlayNoise = false;
+	Color gameOverColor = Colors::MakeRGB(150, 200, 0);
 	std::mt19937 rng;
 	FrameTimer ft;
 	Board brd;
