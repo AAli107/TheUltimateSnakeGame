@@ -8,6 +8,7 @@ class Board
 public:
 	Board( Graphics& gfx );
 	void DrawCell(const Location& loc,Color c, bool isCircle, bool hasOutline, bool hasShadow);
+	void DrawCellPlain(const Location& loc, Color c);
 	int GetGridWidth() const;
 	int GetGridHeight() const;
 	bool IsInsideBoard( const Location& loc ) const;

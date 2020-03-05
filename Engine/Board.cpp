@@ -39,6 +39,19 @@ void Board::DrawCell(const Location& loc, Color c, bool isCircle, bool hasOutlin
 	}
 }
 
+void Board::DrawCellPlain(const Location& loc, Color c)
+{
+	assert(loc.x >= 0);
+	assert(loc.x < width);
+	assert(loc.y >= 0);
+	assert(loc.y < height);
+
+	const int off_x = x + borderWidth + borderPadding;
+	const int off_y = y + borderWidth + borderPadding;
+
+	gfx.DrawRectDim(loc.x * dimension + off_x, loc.y * dimension + off_y, dimension, dimension, c, false);
+}
+
 int Board::GetGridWidth() const
 {
 	return width;
