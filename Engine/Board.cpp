@@ -6,7 +6,7 @@ Board::Board( Graphics& gfx )
 	gfx( gfx )
 {}
 
-void Board::DrawCell(const Location& loc, Color c, bool isCircle, bool hasOutline, bool hasShadow)
+void Board::DrawCell(const Location& loc, Color c, bool isCircle, bool hasShading, bool hasShadow)
 {
 	assert(loc.x >= 0);
 	assert(loc.x < width);
@@ -35,7 +35,7 @@ void Board::DrawCell(const Location& loc, Color c, bool isCircle, bool hasOutlin
 		{
 			gfx.DrawRectDim(loc.x * dimension + (off_x - 1), loc.y * dimension + (off_y + 2), dimension, dimension, shadowColor, false);
 		}
-		gfx.DrawRectDim(loc.x * dimension + off_x + cellPadding, loc.y * dimension + off_y + cellPadding, dimension - cellPadding, dimension - cellPadding, c, hasOutline);
+		gfx.DrawRectDim(loc.x * dimension + off_x + cellPadding, loc.y * dimension + off_y + cellPadding, dimension - cellPadding, dimension - cellPadding, c, hasShading);
 	}
 }
 

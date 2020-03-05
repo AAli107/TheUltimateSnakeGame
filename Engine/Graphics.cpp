@@ -333,7 +333,7 @@ void Graphics::DrawRect( int x0,int y0,int x1,int y1,Color c)
 	}
 }
 
-void Graphics::DrawRectOutline(int x0, int y0, int x1, int y1, Color c)
+void Graphics::DrawRectShade(int x0, int y0, int x1, int y1, Color c)
 {
 	float darkness1 = 0.5f;
 	float darkness2 = 0.75f;
