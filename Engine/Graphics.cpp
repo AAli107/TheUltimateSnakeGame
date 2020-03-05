@@ -313,7 +313,7 @@ void Graphics::PutPixel( int x,int y,Color c )
 	}
 }
 
-void Graphics::DrawRect( int x0,int y0,int x1,int y1,Color c )
+void Graphics::DrawRect( int x0,int y0,int x1,int y1,Color c)
 {
 	if( x0 > x1 )
 	{
@@ -329,6 +329,43 @@ void Graphics::DrawRect( int x0,int y0,int x1,int y1,Color c )
 		for( int x = x0; x < x1; ++x )
 		{
 			PutPixel( x,y,c );
+		}
+	}
+}
+
+void Graphics::DrawRectOutline(int x0, int y0, int x1, int y1, Color c)
+{
+	float darkness1 = 0.5f;
+	float darkness2 = 0.75f;
+	Color c2 = Color(int(float(c.GetR()) * darkness1), int(float(c.GetG()) * darkness1), int(float(c.GetB()) * darkness1));
+	Color c3 = Color(int(float(c.GetR()) * darkness2), int(float(c.GetG()) * darkness2), int(float(c.GetB()) * darkness2));
+
+
+	if (x0 > x1)
+	{
+		std::swap(x0, x1);
+	}
+	if (y0 > y1)
+	{
+		std::swap(y0, y1);
+	}
+
+	for (int y = y0; y < y1; ++y)
+	{
+		for (int x = x0; x < x1; ++x)
+		{
+			if (x <= x0 + 4 || y >= y1 - 4)
+			{
+				PutPixel(x, y, c2);
+			}
+			else if(x >= x1 - 4 || y <= y0 + 4)
+			{
+				PutPixel(x, y, c3);
+			}
+			else
+			{
+				PutPixel(x, y, c);
+			}
 		}
 	}
 }

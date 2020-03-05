@@ -19,7 +19,7 @@ void BgDirt::Respawn(std::mt19937& rng, const Board& brd)
 
 void BgDirt::Draw(Board& brd) const
 {
-	brd.DrawCell(loc, c, false);
+	brd.DrawCell(loc, c, false, false, false);
 }
 
 void BgDirt::SetLocation(int x, int y)

@@ -6,7 +6,7 @@ Board::Board( Graphics& gfx )
 	gfx( gfx )
 {}
 
-void Board::DrawCell(const Location& loc, Color c, bool isCircle)
+void Board::DrawCell(const Location& loc, Color c, bool isCircle, bool hasOutline, bool hasShadow)
 {
 	assert(loc.x >= 0);
 	assert(loc.x < width);
@@ -15,13 +15,27 @@ void Board::DrawCell(const Location& loc, Color c, bool isCircle)
 
 	const int off_x = x + borderWidth + borderPadding;
 	const int off_y = y + borderWidth + borderPadding;
+
+	float shadowDarkness = 0.2f;
+
+	Color shadowColor = Color(int(float(c.GetR()) * shadowDarkness), int(float(c.GetG()) * shadowDarkness), int(float(c.GetB()) * shadowDarkness));
+
+
 	if (isCircle)
 	{
+		if (hasShadow)
+		{
+			gfx.DrawCircle((loc.x * dimension + (off_x - 1) + (dimension / 2)) - 2, (loc.y * dimension + (off_y + 4) + (dimension / 2)) - 2, (dimension / 2) - 2, shadowColor);
+		}
 		gfx.DrawCircle((loc.x * dimension + off_x + (dimension / 2) + cellPadding) - 2, (loc.y * dimension + off_y + (dimension / 2) + cellPadding) - 2, (dimension / 2) - 2, c);
 	}
 	else 
 	{
-		gfx.DrawRectDim(loc.x * dimension + off_x + cellPadding, loc.y * dimension + off_y + cellPadding, dimension - cellPadding * 2, dimension - cellPadding * 2, c);
+		if (hasShadow)
+		{
+			gfx.DrawRectDim(loc.x * dimension + (off_x - 1), loc.y * dimension + (off_y + 2), dimension, dimension, shadowColor, false);
+		}
+		gfx.DrawRectDim(loc.x * dimension + off_x + cellPadding, loc.y * dimension + off_y + cellPadding, dimension - cellPadding, dimension - cellPadding, c, hasOutline);
 	}
 }
 

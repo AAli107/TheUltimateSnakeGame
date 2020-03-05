@@ -58,11 +58,19 @@ public:
 		PutPixel( x,y,{ unsigned char( r ),unsigned char( g ),unsigned char( b ) } );
 	}
 	void PutPixel( int x,int y,Color c );
-	void DrawRect( int x0,int y0,int x1,int y1,Color c );
+	void DrawRect(int x0, int y0, int x1, int y1, Color c);
+	void DrawRectOutline(int x0, int y0, int x1, int y1, Color c);
 	void DrawCircle(int x, int y, int radius, Color c);
-	void DrawRectDim( int x0,int y0,int width,int height,Color c )
+	void DrawRectDim(int x0, int y0, int width, int height, Color c, bool hasOutline)
 	{
-		DrawRect( x0,y0,x0 + width,y0 + height,c );
+		if (hasOutline)
+		{
+			DrawRectOutline(x0, y0, x0 + width, y0 + height, c);
+		}
+		else
+		{
+			DrawRect(x0, y0, x0 + width, y0 + height, c);
+		}
 	}
 	~Graphics();
 private:

@@ -13,14 +13,14 @@ void Obstacle::Respawn(std::mt19937& rng, const Board& brd, const Snake& snake)
 	std::uniform_int_distribution<int> deltalocOffset(-1, 1);
 	std::uniform_int_distribution<int> RandomBool(0, 1);
 
-	if (RandomBool(rng) == 1)
-	{
-		isCircle = true;
-	}
-	else 
-	{
-		isCircle = false;
-	}
+	//if (RandomBool(rng) == 1)
+	//{
+	//	isCircle = true;
+	//}
+	//else 
+	//{
+	//	isCircle = false;
+	//}
 
 	Location newLoc;
 	do
@@ -48,7 +48,7 @@ void Obstacle::Draw(Board& brd) const
 {
 	if (isVisible)
 	{
-		brd.DrawCell(loc, c, isCircle);
+		brd.DrawCell(loc, c, false, true, true);
 	}
 }
 

@@ -7,7 +7,7 @@ class Board
 {
 public:
 	Board( Graphics& gfx );
-	void DrawCell(const Location& loc,Color c, bool isCircle);
+	void DrawCell(const Location& loc,Color c, bool isCircle, bool hasOutline, bool hasShadow);
 	int GetGridWidth() const;
 	int GetGridHeight() const;
 	bool IsInsideBoard( const Location& loc ) const;
@@ -16,7 +16,7 @@ public:
 public:
 	static constexpr Color borderColor = Colors::MakeRGB(150, 200, 0);
 	static constexpr int dimension = 30;
-	static constexpr int cellPadding = 1;
+	static constexpr int cellPadding = 2;
 	static constexpr int width = 63;
 	static constexpr int height = 35;
 	static constexpr int borderWidth = 30;
