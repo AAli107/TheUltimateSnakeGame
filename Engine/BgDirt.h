@@ -7,6 +7,8 @@
 class BgDirt
 {
 public:
+	BgDirt() = default;
+	BgDirt(std::mt19937& rng, const Board& brd, int x, int y);
 	void Init(std::mt19937& rng, const Board& brd);
 	void Respawn(std::mt19937& rng, const Board& brd);
 	void Draw(Board& brd) const;

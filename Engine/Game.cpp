@@ -8,16 +8,22 @@ Game::Game( MainWindow& wnd ) // Initilizes the game
 	gfx( wnd ),
 	brd( gfx ),
 	rng( std::random_device()() ),
-	snek({31, 17}),
+	snek({ int(brd.GetGridWidth() / 2), int(brd.GetGridHeight())}),
 	goal(rng, brd, snek)
 {
 	for (int i = 0; i < nObstacle; i++)
 	{
 		obstacle[i].Init(rng, brd, snek);
 	}
-	for (int i = 0; i < nDirt; i++)
+
+	int i = 0;
+	for (int y = 0; y < brd.GetGridHeight(); y++)
 	{
-		dirt[i].Init(rng, brd);
+		for (int x = 0; x < brd.GetGridWidth(); x++)
+		{
+			dirt[i] = BgDirt(rng, brd, x, y);
+			i++;
+		}
 	}
 }
 
@@ -227,9 +233,7 @@ void Game::ComposeFrame()
 {
 	if( gameIsStarted )
 	{
-		gfx.DrawRectDim(0, 0, gfx.ScreenWidth, gfx.ScreenHeight, bgColor, false); // Set Background Color
-
-		for (int i = 0; i < nDirt; i++) // Draws Dirt on Background
+		for (int i = 0; i < nDirt; i++) // Draws Dirt Background
 		{
 			dirt[i].Draw(brd);
 		}

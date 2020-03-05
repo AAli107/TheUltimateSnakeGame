@@ -35,7 +35,7 @@ private:
 	float snekMoveCounter = 0.0f;
 	float gameSpeedMultiplyer = 1.0f;
 	static const int nObstacle = 5;
-	static const int nDirt = 9001;
+	static const int nDirt = 2205;
 	bool gameIsOver = false;
 	bool gameIsStarted = false;
 	bool canChangeDirection = true;

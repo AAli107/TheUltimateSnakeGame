@@ -1,5 +1,11 @@
 #include "BgDirt.h"
 
+BgDirt::BgDirt(std::mt19937& rng, const Board& brd, int x, int y)
+{
+	Respawn(rng, brd);
+	SetLocation(x, y);
+}
+
 void BgDirt::Init(std::mt19937& rng, const Board& brd)
 {
 	Respawn(rng, brd);
@@ -7,19 +13,12 @@ void BgDirt::Init(std::mt19937& rng, const Board& brd)
 
 void BgDirt::Respawn(std::mt19937& rng, const Board& brd)
 {
-	std::uniform_int_distribution<int> xDist(0, brd.GetGridWidth() - 2);
-	std::uniform_int_distribution<int> yDist(0, brd.GetGridHeight() - 2);
-	std::uniform_int_distribution<int> RandomBool(0, 1);
-
 	RandomColor(rng);
-
-	loc.x = xDist(rng);
-	loc.y = yDist(rng);
 }
 
 void BgDirt::Draw(Board& brd) const
 {
-	brd.DrawCell(loc, c, false, false, false);
+	brd.DrawCellPlain(loc, c);
 }
 
 void BgDirt::SetLocation(int x, int y)
