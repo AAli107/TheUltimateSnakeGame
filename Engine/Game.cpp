@@ -246,13 +246,14 @@ void Game::ComposeFrame()
 
 		goal.Draw(brd); // Draws food/goal
 		snek.Draw(brd); // Draws Snake and it's segments
-		brd.DrawBorder(); // Draws the game Border
 
 		// Draws the obstacles
 		for (int i = 0; i < nObstacle; i++)
 		{
 			obstacle[i].Draw(brd);
 		}
+
+		brd.DrawBorder(); // Draws the game Border
 
 		if( gameIsOver ) // Draws game over message if game ends
 		{
