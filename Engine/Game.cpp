@@ -10,6 +10,8 @@ Game::Game( MainWindow& wnd ) // Initilizes the game
 	snek({31, 17}),
 	goal(rng, brd, snek)
 {
+	brd.SetBorderColor(MenuBgColor);
+
 	for (int i = 0; i < nObstacle; i++)
 	{
 		obstacle[i].Init(rng, brd, snek);
