@@ -335,10 +335,14 @@ void Graphics::DrawRect( int x0,int y0,int x1,int y1,Color c)
 
 void Graphics::DrawRectShade(int x0, int y0, int x1, int y1, Color c)
 {
-	float darkness1 = 0.5f;
-	float darkness2 = 0.75f;
-	Color c2 = Color(int(float(c.GetR()) * darkness1), int(float(c.GetG()) * darkness1), int(float(c.GetB()) * darkness1));
-	Color c3 = Color(int(float(c.GetR()) * darkness2), int(float(c.GetG()) * darkness2), int(float(c.GetB()) * darkness2));
+	float darkness1 = 0.75f;
+	float darkness2 = 0.5f;
+	float darkness3 = 0.65;
+	float darkness4 = 0.4f;
+	Color c2 = Color(int(float(c.GetR()) * darkness2), int(float(c.GetG()) * darkness2), int(float(c.GetB()) * darkness2));
+	Color c3 = Color(int(float(c.GetR()) * darkness1), int(float(c.GetG()) * darkness1), int(float(c.GetB()) * darkness1));
+	Color c4 = Color(int(float(c.GetR()) * darkness3), int(float(c.GetG()) * darkness3), int(float(c.GetB()) * darkness3));
+	Color c5 = Color(int(float(c.GetR()) * darkness4), int(float(c.GetG()) * darkness4), int(float(c.GetB()) * darkness4));
 
 
 	if (x0 > x1)
@@ -354,17 +358,25 @@ void Graphics::DrawRectShade(int x0, int y0, int x1, int y1, Color c)
 	{
 		for (int x = x0; x < x1; ++x)
 		{
-			if (x <= x0 + 4 || y >= y1 - 4)
+			if ((x >= x0 + 2 && x <= x0 + 4) || (y <= y1 - 2 && y >= y1 - 4))
 			{
 				PutPixel(x, y, c2);
 			}
-			else if(x >= x1 - 4 || y <= y0 + 4)
+			else if((x <= x1 - 2 && x >= x1 - 4) || (y >= y0 + 2 && y <= y0 + 4))
 			{
 				PutPixel(x, y, c3);
 			}
 			else
 			{
 				PutPixel(x, y, c);
+			}
+			if (x <= x0 + 2 || y >= y1 - 2)
+			{
+				PutPixel(x, y, c5);
+			}
+			else if (x >= x1 - 2 || y <= y0 + 2)
+			{
+				PutPixel(x, y, c4);
 			}
 		}
 	}
