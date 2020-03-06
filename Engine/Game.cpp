@@ -45,7 +45,7 @@ void Game::UpdateModel()
 		if (gameIsOver)
 		{
 			gameSpeedMultiplyer = 3.0f;
-			snekMoveCounter += (gameSpeedMultiplyer * 60.0f) * dt;
+			snekMoveCounter += (gameSpeedMultiplyer * 60.0f) * dt; // Game over timer
 			if (snekMoveCounter >= snekMovePeriod)
 			{
 				snekMoveCounter = 0.0f;
@@ -119,6 +119,7 @@ void Game::UpdateModel()
 				canChangeDirection = true;
 				snekMoveCounter = 0.0f;
 
+				// Randomizes Dirt color
 				for (int i = 0; i < nDirt; i++)
 				{
 					if (snek.IsInTile(dirt[i].GetLocation()))
@@ -134,6 +135,7 @@ void Game::UpdateModel()
 					}
 				}
 
+				// Beep Random Bool
 				if (BoolRand(rng) == 1)
 				{
 					PlayBeep = true;
@@ -143,6 +145,7 @@ void Game::UpdateModel()
 					PlayBeep = false;
 				}
 
+				// Noise Random Bool
 				if (BoolRandLow(rng) == 1)
 				{
 					PlayNoise = true;
@@ -154,11 +157,11 @@ void Game::UpdateModel()
 
 				if (PlayBeep) 
 				{
-					Beep.Play(DistP(rng), 0.75f);
+					Beep.Play(DistP(rng), 0.75f); // Beep sound
 				}
 				if (PlayNoise)
 				{
-					Noise.Play(DistP(rng), 0.75f);
+					Noise.Play(DistP(rng), 0.75f); // Noise sound
 				}
 
 				// Updates all the obstacles in game
@@ -178,7 +181,9 @@ void Game::UpdateModel()
 					snek.Grow();
 					Collect.Play();
 				}
-				snek.MoveBy( delta_loc );
+
+				snek.MoveBy( delta_loc ); // Moves Snake around
+
 				if( eating )
 				{
 					goal.Respawn( rng,brd,snek ); // Changes food location when snake eats it
@@ -187,7 +192,7 @@ void Game::UpdateModel()
 		}
 		else
 		{
-			if (gameOverPlay)
+			if (gameOverPlay) // Plays death sound once
 			{
 				Death.Play();
 				gameOverPlay = false;
