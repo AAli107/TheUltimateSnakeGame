@@ -16,7 +16,7 @@ void Board::DrawCell(const Location& loc, Color c, bool isCircle, bool hasShadin
 	const int off_x = x + borderWidth + borderPadding;
 	const int off_y = y + borderWidth + borderPadding;
 
-	float shadowDarkness = 0.2f;
+	float shadowDarkness = 0.1f;
 
 	Color shadowColor = Color(int(float(c.GetR()) * shadowDarkness), int(float(c.GetG()) * shadowDarkness), int(float(c.GetB()) * shadowDarkness));
 
