@@ -102,14 +102,6 @@ void Game::UpdateModel()
 				}
 			}
 
-			// Sets game over to true if snake collides with itself or the edge
-			const Location next = snek.GetNextHeadLocation(delta_loc);
-			if (!brd.IsInsideBoard(next) ||
-				snek.IsInTileExceptEnd(next))
-			{
-				gameIsOver = true;
-			}
-
 			snekMoveCounter += (gameSpeedMultiplyer * 60.0f) * dt; // Controls Game Speed
 			if( snekMoveCounter >= snekMovePeriod )
 			{
@@ -118,6 +110,14 @@ void Game::UpdateModel()
 				std::uniform_real_distribution<float> DistP(0.5f, 1.5f);
 				canChangeDirection = true;
 				snekMoveCounter = 0.0f;
+
+				// Sets game over to true if snake collides with itself or the edge
+				const Location next = snek.GetNextHeadLocation(delta_loc);
+				if (!brd.IsInsideBoard(next) ||
+					snek.IsInTileExceptEnd(next))
+				{
+					gameIsOver = true;
+				}
 
 				// Randomizes Dirt color
 				for (int i = 0; i < nDirt; i++)
