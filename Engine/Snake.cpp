@@ -16,6 +16,11 @@ void Snake::Init(const Location& loc)
 	}
 
 	segments[0].InitHead(loc);
+
+	if (nSegments > 1)
+	{
+		segments[1].Follow(segments[0]);
+	}
 }
 
 void Snake::MoveBy( const Location& delta_loc )
