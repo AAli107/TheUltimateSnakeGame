@@ -90,4 +90,7 @@ int Board::GetTotalCells() const
 	return width * height;
 }
 
-
+void Board::SetBorderColor(Color c)
+{
+	borderColor = c;
+}

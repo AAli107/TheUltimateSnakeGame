@@ -14,8 +14,9 @@ public:
 	bool IsInsideBoard( const Location& loc ) const;
 	void DrawBorder();
 	int GetTotalCells() const;
+	void SetBorderColor(Color c);
 public:
-	static constexpr Color borderColor = Colors::MakeRGB(89, 89, 89);
+	Color borderColor = Colors::MakeRGB(89, 89, 89);
 	static constexpr int dimension = 30;
 	static constexpr int cellPadding = 2;
 	static constexpr int width = 63;
