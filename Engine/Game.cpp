@@ -232,9 +232,9 @@ void Game::UpdateModel()
 		exit(0);
 	}
 
-	if (gameIsOver)
+	if (gameIsStarted && isReady)
 	{
-		if (wnd.kbd.KeyIsPressed('R')) // Restarts game when pressing 'R' if game is over
+		if (wnd.kbd.KeyIsPressed('R')) // Restarts game when pressing 'R'
 		{
 			snek.nSegments = 2;
 			snek.Init({ 31, 17 });
