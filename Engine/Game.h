@@ -72,5 +72,6 @@ private:
 	Sound Noise = L"Sounds\\Noise.wav";
 	Sound Start = L"Sounds\\StartMusic.wav";
 	Sound BgBeat = L"Sounds\\BgBeat.wav";
+	Sound Hit = L"Sounds\\Hit.wav";
 	/********************************/
 };

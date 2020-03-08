@@ -46,7 +46,7 @@ void Game::UpdateModel()
 		{
 			if (gameIsOver)
 			{
-				gameSpeedMultiplyer = 3.0f;
+				gameSpeedMultiplyer = 4.0f;
 				snekMoveCounter += (gameSpeedMultiplyer * 60.0f) * dt; // Game over timer
 				if (snekMoveCounter >= snekMovePeriod)
 				{
@@ -172,6 +172,10 @@ void Game::UpdateModel()
 					for (int i = 0; i < nObstacle; i++)
 					{
 						obstacle[i].Update();
+						if(obstacle[i].HittingWall())
+						{
+							Hit.Play(1.0f, 2.0f);
+						}
 					}
 
 					// Grows the snake when it eats the food and switches the location of the food
