@@ -55,11 +55,21 @@ void Obstacle::Update()
 	if (loc.x >= 61 || loc.x <= 0)
 	{
 		delta_loc.x *= -1;
+		hittingWall = true;
+	}
+	else
+	{
+		hittingWall = false;
 	}
 
 	if (loc.y >= 33 || loc.y <= 0)
 	{
 		delta_loc.y *= -1;
+		hittingWall = true;
+	}
+	else
+	{
+		hittingWall = false;
 	}
 }
 
@@ -71,5 +81,10 @@ const Location& Obstacle::GetLocation() const
 void Obstacle::SetVisibility(bool visible)
 {
 	isVisible = visible;
+}
+
+bool Obstacle::HittingWall() const
+{
+	return hittingWall;
 }
 
