@@ -166,6 +166,8 @@ void Game::UpdateModel()
 						Noise.Play(DistP(rng), 0.75f); // Noise sound
 					}
 
+					BgBeat.Play(DistP(rng), 0.75f); // Snake Moving sound
+
 					// Updates all the obstacles in game
 					for (int i = 0; i < nObstacle; i++)
 					{
