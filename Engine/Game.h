@@ -27,6 +27,7 @@ private:
 	/*  User Functions              */
 	void DrawGameOver();
 	void DrawReady();
+	void DrawMainMenu();
 	/********************************/
 private:
 	MainWindow& wnd;
