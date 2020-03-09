@@ -138,6 +138,7 @@
   <ItemGroup>
     <ClInclude Include="BgDirt.h" />
     <ClInclude Include="Board.h" />
+    <ClInclude Include="CellCodex.h" />
     <ClInclude Include="ChiliException.h" />
     <ClInclude Include="ChiliWin.h" />
     <ClInclude Include="Colors.h" />
@@ -159,6 +160,7 @@
   <ItemGroup>
     <ClCompile Include="BgDirt.cpp" />
     <ClCompile Include="Board.cpp" />
+    <ClCompile Include="CellCodex.cpp" />
     <ClCompile Include="DXErr.cpp" />
     <ClCompile Include="FrameTimer.cpp" />
     <ClCompile Include="Game.cpp" />

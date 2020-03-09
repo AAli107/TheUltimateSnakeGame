@@ -6,6 +6,7 @@
 #include "Sound.h"
 #include "Board.h"
 #include "SpriteCodex.h"
+#include "CellCodex.h"
 #include "Snake.h"
 #include "Goal.h"
 #include "Obstacle.h"
@@ -25,9 +26,6 @@ private:
 	void UpdateModel();
 	/********************************/
 	/*  User Functions              */
-	void DrawGameOver();
-	void DrawReady();
-	void DrawMainMenu();
 	/********************************/
 private:
 	MainWindow& wnd;
@@ -53,6 +51,7 @@ private:
 	bool isReady = false;
 
 	SpriteCodex spriteCodex;
+	CellCodex cellCodex;
 	std::mt19937 rng;
 	FrameTimer ft;
 	Board brd;
@@ -64,7 +63,6 @@ private:
 
 	Location delta_loc = {1, 0};
 
-	Color textColor = Colors::MakeRGB(150, 200, 0);
 	Color MenuBgColor = Colors::MakeRGB(89, 89, 89);
 
 	Sound Collect = L"Sounds\\SnakeEat.wav";
