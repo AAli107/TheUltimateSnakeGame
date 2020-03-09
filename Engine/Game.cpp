@@ -47,7 +47,7 @@ void Game::UpdateModel()
 		{
 			if (gameIsOver)
 			{
-				gameSpeedMultiplyer = 3.5f;
+				gameSpeedMultiplyer = 3.1f;
 				snekMoveCounter += (gameSpeedMultiplyer * 60.0f) * dt; // Game over timer
 				if (snekMoveCounter >= snekMovePeriod)
 				{
