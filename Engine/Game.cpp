@@ -218,7 +218,6 @@ void Game::UpdateModel()
 	if (wnd.kbd.KeyIsPressed(VK_ESCAPE)) // Leaves game when pressing escape button
 	{
 		exit(0);
-		Select.Play();
 	}
 
 	if (gameIsStarted && isReady && wnd.kbd.KeyIsPressed('R')) // Restarts game when pressing 'R'
