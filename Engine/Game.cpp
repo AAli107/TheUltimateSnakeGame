@@ -45,6 +45,7 @@ void Game::UpdateModel()
 				if (wnd.kbd.KeyIsPressed('P')) // Pause Game
 				{
 					gameIsStarted = false;
+					Select.Play();
 				}
 
 				// Controls the direction of the snake
@@ -174,14 +175,10 @@ void Game::UpdateModel()
 						}
 						snek.Grow();
 						Collect.Play();
-					}
 
+						goal.Respawn(rng, brd, snek);
+					}
 					snek.MoveBy(delta_loc); // Moves Snake around
-
-					if (eating)
-					{
-						goal.Respawn(rng, brd, snek); // Changes food location when snake eats it
-					}
 				}
 			}
 			else
@@ -215,16 +212,19 @@ void Game::UpdateModel()
 	else if (wnd.kbd.KeyIsPressed(VK_RETURN)) // Starts game when pressing enter
 	{
 		gameIsStarted = true;
+		Select.Play();
 	}
 
 	if (wnd.kbd.KeyIsPressed(VK_ESCAPE)) // Leaves game when pressing escape button
 	{
 		exit(0);
+		Select.Play();
 	}
 
 	if (gameIsStarted && isReady && wnd.kbd.KeyIsPressed('R')) // Restarts game when pressing 'R'
 	{
 		InitializeGame();
+		Select.Play();
 	}
 }
 
