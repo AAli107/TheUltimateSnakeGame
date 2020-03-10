@@ -72,5 +72,6 @@ private:
 	Sound BgBeat = L"Sounds\\BgBeat.wav";
 	Sound Hit = L"Sounds\\Hit.wav";
 	Sound Select = L"Sounds\\Select.wav";
+	Sound SnakeMove = L"Sounds\\Turn.wav";
 	/********************************/
 };

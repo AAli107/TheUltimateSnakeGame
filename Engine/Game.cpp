@@ -51,34 +51,38 @@ void Game::UpdateModel()
 				// Controls the direction of the snake
 				if (wnd.kbd.KeyIsPressed(VK_UP) && canChangeDirection) // Move snake Up
 				{
-					if (delta_loc.y != 1)
+					if (delta_loc.y != 1 && delta_loc != Location{ 0, -1 })
 					{
 						canChangeDirection = false;
 						delta_loc = { 0,-1 };
+						SnakeMove.Play(1.0f, 2.0f);
 					}
 				}
 				if (wnd.kbd.KeyIsPressed(VK_DOWN) && canChangeDirection) // Move snake Down
 				{
-					if (delta_loc.y != -1)
+					if (delta_loc.y != -1 && delta_loc != Location{ 0,1 })
 					{
 						canChangeDirection = false;
 						delta_loc = { 0,1 };
+						SnakeMove.Play(1.0f, 2.0f);
 					}
 				}
 				if (wnd.kbd.KeyIsPressed(VK_LEFT) && canChangeDirection) // Move snake Left
 				{
-					if (delta_loc.x != 1)
+					if (delta_loc.x != 1 && delta_loc != Location{ -1,0 })
 					{
 						canChangeDirection = false;
 						delta_loc = { -1,0 };
+						SnakeMove.Play(1.0f, 2.0f);
 					}
 				}
 				if (wnd.kbd.KeyIsPressed(VK_RIGHT) && canChangeDirection) // Move snake Right
 				{
-					if (delta_loc.x != -1)
+					if (delta_loc.x != -1 && delta_loc != Location{ 1,0 })
 					{
 						canChangeDirection = false;
 						delta_loc = { 1,0 };
+						SnakeMove.Play(1.0f, 2.0f);
 					}
 				}
 
@@ -146,14 +150,14 @@ void Game::UpdateModel()
 
 					if (PlayBeep)
 					{
-						Beep.Play(DistP(rng), 0.75f); // Beep sound
+						Beep.Play(DistP(rng), 0.5f); // Beep sound
 					}
 					if (PlayNoise)
 					{
-						Noise.Play(DistP(rng), 0.75f); // Noise sound
+						Noise.Play(DistP(rng), 0.5f); // Noise sound
 					}
 
-					BgBeat.Play(DistP(rng), 0.75f); // Snake Moving sound
+					BgBeat.Play(DistP(rng), 0.5f); // Music Beat sound
 
 					// Updates all the obstacles in game
 					for (int i = 0; i < nObstacle; i++)
@@ -209,7 +213,7 @@ void Game::UpdateModel()
 			}
 		}
 	}
-	else if (wnd.kbd.KeyIsPressed(VK_RETURN)) // Starts game when pressing enter
+	else if (wnd.kbd.KeyIsPressed(VK_ESCAPE)) // Starts game when pressing enter
 	{
 		gameIsStarted = true;
 		Select.Play();
