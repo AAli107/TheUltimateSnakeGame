@@ -44,8 +44,16 @@ void Game::UpdateModel()
 			{
 				if (wnd.kbd.KeyIsPressed('P')) // Pause Game
 				{
-					gameIsStarted = false;
-					Select.Play();
+					if (!inhibitPause)
+					{
+						gameIsStarted = false;
+						Select.Play();
+						inhibitPause = true;
+					}
+				}
+				else
+				{
+					inhibitPause = false;
 				}
 
 				// Controls the direction of the snake
@@ -213,10 +221,18 @@ void Game::UpdateModel()
 			}
 		}
 	}
-	else if (wnd.kbd.KeyIsPressed(VK_ESCAPE)) // Starts game when pressing enter
+	else if (wnd.kbd.KeyIsPressed(VK_RETURN)) // Starts game when pressing enter
 	{
-		gameIsStarted = true;
-		Select.Play();
+		if (!inhibitStart) 
+		{
+			gameIsStarted = true;
+			Select.Play();
+			inhibitStart = true;
+		}
+	}
+	else
+	{
+		inhibitStart = false;
 	}
 
 	if (wnd.kbd.KeyIsPressed(VK_ESCAPE)) // Leaves game when pressing escape button

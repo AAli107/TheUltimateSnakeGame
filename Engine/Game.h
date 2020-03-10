@@ -43,12 +43,13 @@ private:
 	bool gameIsOver = false;
 	bool gameIsStarted = false;
 	bool canChangeDirection = true;
-	bool InhibitEnter = false;
 	bool gameOverPlay = true;
 	bool readyPlay = true;
 	bool PlayBeep = false;
 	bool PlayNoise = false;
 	bool isReady = false;
+	bool inhibitPause = false;
+	bool inhibitStart = false;
 
 	CellCodex cellCodex;
 	std::mt19937 rng;
