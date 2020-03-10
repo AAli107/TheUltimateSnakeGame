@@ -276,7 +276,10 @@ void Game::InitializeGame()
 			for (int x = 0; x < brd.GetGridWidth(); x++)
 			{
 				dirt[i] = BgDirt(rng, brd, x, y);
-				i++;
+				if (i < nDirt)
+				{
+					i++;
+				}
 			}
 		}
 	}
