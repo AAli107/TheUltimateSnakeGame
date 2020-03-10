@@ -11,22 +11,7 @@ Game::Game( MainWindow& wnd ) // Initilizes the game
 	goal(rng, brd, snek),
 	cellCodex(brd)
 {
-	brd.SetBorderColor(MenuBgColor);
-
-	for (int i = 0; i < nObstacle; i++)
-	{
-		obstacle[i].Init(rng, brd, snek);
-	}
-
-	int i = 0;
-	for (int y = 0; y < brd.GetGridHeight(); y++)
-	{
-		for (int x = 0; x < brd.GetGridWidth(); x++)
-		{
-			dirt[i] = BgDirt(rng, brd, x, y);
-			i++;
-		}
-	}
+	InitializeGame();
 }
 
 void Game::Go() // Single Frame sequence
@@ -227,40 +212,52 @@ void Game::UpdateModel()
 			}
 		}
 	}
-	else
+	else if (wnd.kbd.KeyIsPressed(VK_RETURN)) // Starts game when pressing enter
 	{
-		if (wnd.kbd.KeyIsPressed(VK_RETURN)) // Starts game when pressing enter
-		{
-			gameIsStarted = true;
-		}
+		gameIsStarted = true;
 	}
+
 	if (wnd.kbd.KeyIsPressed(VK_ESCAPE)) // Leaves game when pressing escape button
 	{
 		exit(0);
 	}
 
-	if (gameIsStarted && isReady)
+	if (gameIsStarted && isReady && wnd.kbd.KeyIsPressed('R')) // Restarts game when pressing 'R'
 	{
-		if (wnd.kbd.KeyIsPressed('R')) // Restarts game when pressing 'R'
+		InitializeGame();
+	}
+}
+
+void Game::InitializeGame()
+{
+	brd.SetBorderColor(MenuBgColor);
+	snek.nSegments = 2;
+	snek.Init({ 31, 17 });
+	gameSpeedMultiplyer = 1.0f;
+	gameStartDelay = 2.1f;
+	delta_loc = { 1, 0 };
+	isReady = false;
+	gameIsOver = false;
+	gameIsStarted = false;
+	gameOverPlay = true;
+	readyPlay = true;
+	goal.Respawn(rng, brd, snek);
+	for (int i = 0; i < nDirt; i++)
+	{
+		dirt[i].Init(rng, brd);
+	}
+	for (int i = 0; i < nObstacle; i++)
+	{
+		obstacle[i].Init(rng, brd, snek);
+	}
+	{
+		int i = 0;
+		for (int y = 0; y < brd.GetGridHeight(); y++)
 		{
-			snek.nSegments = 2;
-			snek.Init({ 31, 17 });
-			gameSpeedMultiplyer = 1.0f;
-			gameStartDelay = 2.1f;
-			delta_loc = { 1, 0 };
-			isReady = false;
-			gameIsOver = false;
-			gameIsStarted = false;
-			gameOverPlay = true;
-			readyPlay = true;
-			goal.Respawn(rng, brd, snek);
-			for (int i = 0; i < nDirt; i++)
+			for (int x = 0; x < brd.GetGridWidth(); x++)
 			{
-				dirt[i].Init(rng, brd);
-			}
-			for (int i = 0; i < nObstacle; i++)
-			{
-				obstacle[i].Init(rng, brd, snek);
+				dirt[i] = BgDirt(rng, brd, x, y);
+				i++;
 			}
 		}
 	}
@@ -302,7 +299,7 @@ void Game::ComposeFrame()
 	}
 	else // Draws Main menu image if game is not started
 	{
-		gfx.DrawRectDim(0, 0, gfx.ScreenWidth, gfx.ScreenHeight, MenuBgColor, true); // Set Background Color of main menu
+		gfx.DrawRectDim(0, 0, gfx.ScreenWidth, gfx.ScreenHeight, MenuBgColor, false); // Set Background Color of main menu
 		cellCodex.DrawMainMenu(); // Menu Title
 	}
 }

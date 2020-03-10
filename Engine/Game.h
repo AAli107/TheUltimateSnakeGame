@@ -5,7 +5,6 @@
 #include "Graphics.h"
 #include "Sound.h"
 #include "Board.h"
-#include "SpriteCodex.h"
 #include "CellCodex.h"
 #include "Snake.h"
 #include "Goal.h"
@@ -26,6 +25,7 @@ private:
 	void UpdateModel();
 	/********************************/
 	/*  User Functions              */
+	void InitializeGame();
 	/********************************/
 private:
 	MainWindow& wnd;
@@ -50,7 +50,6 @@ private:
 	bool PlayNoise = false;
 	bool isReady = false;
 
-	SpriteCodex spriteCodex;
 	CellCodex cellCodex;
 	std::mt19937 rng;
 	FrameTimer ft;
